@@ -1,36 +1,76 @@
-let projectName = document.querySelector('#name');
-let description = document.querySelector('#description');
-let start = document.querySelector('#start-date');
-let end = document.querySelector('#end-date');
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('createForm');
+    const projectWrapper = document.getElementById('projectWrapper');
 
-let createForm = document.querySelector('.create-form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-let projects = [];
+            const project = {
+                name: document.getElementById('name').value,
+                description: document.getElementById('description').value,
+                startDate: document.getElementById('start-date').value,
+                endDate: document.getElementById('end-date').value,
+            };
 
-createForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+            saveProject(project);
+            form.reset();
+            alert('Project created successfully!');
+            window.location.href = 'all.html';
+        });
+    }
 
-    let project_name = projectName.value.trim();
-    let project_description = description.value.trim();
-    let project_start = start.value.trim();
-    let project_end = end.value.trim();
+    function saveProject(project) {
+        let projects = localStorage.getItem('projects');
+        if (projects) {
+            projects = JSON.parse(projects);
+        } else {
+            projects = [];
+        }
 
-    if (project_name !== '' && project_description !== '' && project_start !== '' && project_end !== '') {
-        let project = {
-            project_name: project_name,
-            project_description: project_description,
-            project_start: project_start,
-            project_end: project_end,
-        };
+        projects.push(project);
+        localStorage.setItem('projects', JSON.stringify(projects));
+    }
 
-    
-     projects.push(project);
-     console.log(projects);
+    function loadProjects() {
+        let projects = localStorage.getItem('projects');
+        if (projects) {
+            projects = JSON.parse(projects);
+            projects.forEach(project => displayProject(project));
+        }
+    }
 
-     displayProjects();
+    function displayProject(project) {
+        const projectElement = document.createElement('div');
+        projectElement.classList.add('project');
 
-    
+        projectElement.innerHTML = `
+            <h1>${project.name}</h1>
+            <p>${project.description}</p>
+            <div class="dates">
+                <p>Start: ${project.startDate}</p>
+                <p>End: ${project.endDate}</p>
+            </div>
+            <button class="view">View Project</button>
+            <button class="delete">Delete</button>
+        `;
+
+        const deleteButton = projectElement.querySelector('.delete');
+        deleteButton.addEventListener('click', () => deleteProject(project, projectElement));
+
+        if (projectWrapper) {
+            projectWrapper.appendChild(projectElement);
+        }
+    }
+
+    function deleteProject(project, projectElement) {
+        let projects = JSON.parse(localStorage.getItem('projects'));
+        projects = projects.filter(p => p.name !== project.name);
+        localStorage.setItem('projects', JSON.stringify(projects));
+        projectElement.remove();
+    }
+
+    if (projectWrapper) {
+        loadProjects();
     }
 });
-
-
