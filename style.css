@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'poppins', sans-serif;
+}
+.main{
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
+header{
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content:space-evenly;
+    background-color:rgb(69, 67, 67);
+    align-items: center;
+
+}
+h1{ 
+    margin: 20px;
+    color:#fff;
+    font-size: 20px;
+
+}
+
+.nav-links ul{
+    display:flex;
+   
+    gap: 20px;
+    
+}
+.nav-links ul li{
+    list-style: none;
+}
+.nav-links ul li a{
+    text-decoration: none;
+    color:#fff;
+    font-size: 15px;
+   
+}
+.nav-links ul li a:hover{
+
+    
+    color: #fff;
+    
+   
+}
+main{
+    text-align: center;
+    color: blueviolet;
+}
+label{
+    color: black;
+    margin-top: 30px;
+    width: 100%;
+}
+.create-form{
+    margin: 30px auto;
+    width: 50vw;
+    height: 60vh;
+    background-color: rgb(252, 249, 249);
+    min-width:250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 1px 1px 1px 1px lightgray;
+}
+
+input{
+    padding: .3rem 1rem;
+    background-color: whitesmoke;
+   border-radius: 5px;
+    outline: none;
+
+}
+.btnSubmit{
+    background-color: blueviolet;
+    color: #fff;
+    border: none;
+    width: 30%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+
+}
+.btnSubmit:hover{
+    background-color: rgb(132, 3, 252);
+    transition: .5s;
+    cursor: pointer;
+
+}
+.active{
+    background-color:blueviolet;
+    color: #fff;
+    padding: 10px 10px;
+    font-size: 15px;
+    border-radius: 5px;
+   
+}
+.project-wrapper{
+    width: 80%;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+  
+    
+}
+.project{
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    color: #000;
+}
+.project h1{
+    color: #000;
+}
+.view{
+  background-color:rgb(48, 47, 47);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+ 
+
+}
+.delete{
+    cursor: pointer;
+    background-color:red;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+
+}
+button{
+    cursor: pointer;
+    margin-top:20px ;
+}
